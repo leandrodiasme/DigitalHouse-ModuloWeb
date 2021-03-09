@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const path = require('path');
 const app = express();
 
 const api = axios.create({
@@ -42,6 +43,10 @@ app.get('/pokemons', async (req, res) => {
     }
     return res.json(retorno);
 });
+
+app.get('/', (req, res)=>{
+    res.sendFile(path.join(__dirname, '/src/views/index.html'))
+})
 
 app.listen(3000, () => {
     console.log('Servidor rodando na porta 3000');
